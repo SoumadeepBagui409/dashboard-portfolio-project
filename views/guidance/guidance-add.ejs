@@ -1,0 +1,107 @@
+<%- include('../partials/header'); -%>
+<%- include('../partials/navbar'); -%>
+
+<%if(!update){%>
+<div class="guidance-add-update-back">
+    <br>
+    <div class="guidance-add-update-info">
+        <h2>Add the data for guidance</h2>
+        <hr>
+        <br>
+        <form action="/guidance/add/<%=id%>" method="POST">
+            <label for="name">Name</label>
+            <br><br>
+            <input type="text" name="name" id="name" required>
+            <br>
+            <br>
+            <label for="title">Title of the project</label>
+            <br><br>
+            <input type="text" name="title" id="title">
+            <br>
+            <br>
+            <label for="time">Time Taken</label>
+            <br>
+            <br>
+            <input type="date" name="time" id="time">
+            <br><br>
+            <label for="project">Project</label>
+            <br><br>
+            <textarea name="project" id="project" cols="30" rows="10"></textarea>
+            <br><br>
+            <label for="duration">duration</label>
+            <br><br>
+            <input type="text" name="duration" id="duration">
+            <br><br>
+            <%if(!intern){%>
+            <label for="affiliation">Affiliation</label>
+            <br><br>
+            <input type="affiliation" name="affiliation" id="affiliation">
+            <br><br>
+            <label for="status">Status</label>
+            <br><br>
+            <input type="text" name="status" id="status">
+                <%}%>
+            <br>
+            <br>
+            <br>
+            <br>
+            <button type="submit" class="btn-lg btn-dark">Add</button>
+        </form>
+      
+    </div>
+    <br>
+</div>
+
+<%}else{%>
+    <div class="guidance-add-update-back">
+        <br>
+        <div class="guidance-add-update-info">
+            <h2>Update the data for guidance</h2>
+            <hr>
+            <br>
+            <form action="/guidance/update/<%=id%>/<%=idx%>" method="POST">
+                <label for="name">Name</label>
+                <br><br>
+                <input type="text" name="name" id="name" required value="<%=guide[0].name%>">
+                <br>
+                <br>
+                <label for="title">Title of the project</label>
+                <br><br>
+                <input type="text" name="title" id="title" value="<%=guide[0].title%>">
+                <br>
+                <br>
+                <label for="time">Time Taken</label>
+                <br>
+                <br>
+                <input type="date" name="time" id="time" value="<%=guide[0].time%>">
+                <br><br>
+                <label for="project">Project</label>
+                <br><br>
+                <textarea name="project" id="project" cols="30" rows="10"><%=guide[0].project%></textarea>
+                <br><br>
+                <label for="duration">duration</label>
+                <br><br>
+                <input type="text" name="duration" id="duration" value="<%=guide[0].duration%>">
+                <br><br>
+                <%if(!intern){%>
+                <label for="affiliation">Affiliation</label>
+                <br><br>
+                <input type="affiliation" name="affiliation" id="affiliation" value="<%=guide[0].affiliation%>">
+                <br><br>
+                <label for="status">Status</label>
+                <br><br>
+                <input type="text" name="status" id="status" value="<%=guide[0].status%>">
+                    <%}%>
+                <br>
+                <br>
+                <br>
+                <br>
+                <button type="submit" class="btn-lg btn-dark">Update</button>
+            </form>
+          
+        </div>
+        <br>
+    </div>
+<%}%>
+
+<%- include('../partials/footer'); -%>

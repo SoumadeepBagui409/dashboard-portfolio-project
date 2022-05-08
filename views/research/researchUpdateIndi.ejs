@@ -1,0 +1,42 @@
+<%- include('../partials/header'); -%>
+<%- include('../partials/navbar'); -%>
+
+<div class="research-add">
+    <br>
+    <br>
+    <div class="research-add-data">
+
+        <form action="/research/add/<%=id%>/<%=idx%>?_method=PATCH" method="POST">
+            <label for="desc"> Update Description</label>
+            <br>
+            <br>
+            <textarea name="desc" id="desc" cols="30" rows="10"><%=value[0].desc%></textarea>
+            <br>
+            <br>
+            <label for="type">Type</label>
+            <select name="type" id="type">
+                <option value="other">other</option>
+                <option value="journal">Journal</option>
+                <option value="Conference">Conference</option>
+                <option value="Book">Book</option>
+                <option value="BookChapter">Book Chapter</option>
+                <option value="patent">patent</option>
+            </select>
+            <br>
+            <br>
+            <button type="submit" class="btn btn-dark">Add</button>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<%- include('../partials/footer'); -%>

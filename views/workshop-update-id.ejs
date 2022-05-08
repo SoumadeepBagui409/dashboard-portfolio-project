@@ -1,0 +1,19 @@
+<%- include('./partials/header'); -%>
+<%- include('./partials/navbar'); -%>
+
+<div class="workshop-add-design">
+    <div class="workshop-add-detail">
+        <form action="/workshop/add/<%=id%>/<%=idx%>" method="POST">
+            <h2>Add description for the Workshop</h2>
+            <hr>
+            <br>
+            <h2> <label for="descp">Add the Description</label></h2>
+            <br>
+            <textarea name="descp" id="descp" cols="40" rows="10" required><%=workshop%></textarea>
+            <br>
+            <br>
+            <button type="submit" class="btn btn-dark">Add</button>
+        </form>
+    </div>
+</div>
+<%- include('./partials/footer'); -%>

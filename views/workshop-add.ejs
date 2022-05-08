@@ -1,0 +1,29 @@
+<%- include('./partials/header'); -%>
+<%- include('./partials/navbar'); -%>
+
+<div class="workshop-add-design"> 
+
+    <div class="workshop-add-detail">
+        <form action="/workshop/add" method="POST">
+            <h2>Add data to Workshop</h2>
+            <hr>
+            <h2><label for="year">Year</label></h2>
+            <input type="number" name="year" id="year" min="1970" required>
+            <br>
+            <br>
+            <h2> <label for="descp">Description</label></h2>
+            <br>
+            <textarea name="descp" id="descp" cols="40" rows="10" required></textarea>
+            <br>
+            <br>
+            <button type="submit" class="btn btn-dark">Add</button>
+        </form>
+    </div>
+   
+</div>
+
+
+
+
+
+<%- include('./partials/footer'); -%>

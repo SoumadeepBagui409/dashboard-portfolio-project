@@ -1,0 +1,46 @@
+.teaching-background{
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: 1px 0px 1px black;
+    background: linear-gradient(to bottom right,rgba(191, 182, 127, 0.288),rgba(105, 171, 195, 0.315)),url("https://images.unsplash.com/photo-1651232881282-7bbbbb81e067?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyOXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    letter-spacing: 0.2rem;
+}
+.teaching-display{
+    width: 90vw;
+    padding: 20px;
+    margin:  auto;
+    background: linear-gradient(to bottom right,rgba(19, 67, 103, 0.573),rgba(15, 128, 119, 0.556));
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.teaching-info{
+    text-align: left;
+    padding: 40px;
+    margin: auto;
+    width: 80vw;
+    background: linear-gradient(to bottom right,rgba(20, 117, 190, 0.573),rgba(20, 200, 185, 0.556));
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.teachingAdd-background{    
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: 1px 0px 1px black;
+    background: linear-gradient(to bottom right,rgba(191, 182, 127, 0.288),rgba(105, 171, 195, 0.315)),url("https://images.unsplash.com/photo-1650030264715-79e3f0a511b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    letter-spacing: 0.2rem;
+    height: 100vh;
+}
+
+.teaching-infoAdd{
+    padding: 20px;
+    text-align: center;
+    width: 70vw;
+    margin:  20px auto;
+    background: linear-gradient(to bottom right,rgba(20, 117, 190, 0.573),rgba(20, 200, 185, 0.556));
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}

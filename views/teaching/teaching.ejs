@@ -1,0 +1,106 @@
+<%- include('../partials/header'); -%>
+<%- include('../partials/navbar'); -%>
+
+
+
+
+
+<div class="teaching-background">
+    <div class="teaching-nav">
+        <h1>Teaching</h1>
+        <a href="/teaching/add/data" class="btn btn-dark">Add new data</a>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="teaching-display">
+        <h5>courses</h5>
+        <br>
+        <a href="/course/add" class="btn btn-dark">Add</a>
+        <br>
+        <br>
+        <%for(let crs of course){%>
+        <div class="teaching-info">
+            <h5>Course Name: <%=crs.courseName%></h5>
+            <br>
+            <h5>Course Code: <%=crs.courseCode%></h5>
+            <br>
+            <!-- <h5>desc</h5>
+            <%for(let sen of crs.desc){%>
+                <p><%=sen%></p>
+                <%}%> -->
+                <div class="button-handler">
+                    <form action="/course/delete/<%=crs._id%>?_method=DELETE" method="post">
+                        <button type="submit" class="btn btn-danger">
+                            delete
+                        </button>
+                        <a href="/course/update/<%=crs._id%>?_method=PATCH" class="btn btn-dark">update</a>
+                    </form>
+                </div>
+        </div>
+        <%}%>
+    </div>
+    <br>
+    <br>
+    <%for(let tch of teach){%>
+      
+        
+    <div class="teaching-display">
+        <h1> <%=tch.year%></h1>
+        <%const onGoing = tch.info.filter((ele)=>{return ele.status == "On Going"})%>
+        <%const completed = tch.info.filter((ele)=>{return ele.status == "Completed"})%>
+        <br>
+        <div class="button-handler">
+            <form action="/teaching/delete/<%=tch._id%>?_method=DELETE" method="POST">
+                <button type="submit" class="btn btn-danger">DELETE</button>
+            </form>
+            <a href="/teaching/add/<%=tch._id%>" class="btn btn-dark">Add</a>
+        </div>
+        <br>    
+        <%for(let ele of onGoing){%>
+            <div class="teaching-info">
+            
+                <h2>status: <%=ele.status%></h2>
+                <h2>semester: <%=ele.semester%></h2>
+                <h2>course Code: <%=ele.courseCode%></h2>
+                <h2>course Name: <%=ele.courseName%></h2>
+                <h2>level: <%=ele.level%></h2>
+                <h2>course Link: <%=ele.courseLink%></h2>
+                <div class="button-handler">
+                    <form action="/teaching/deleteIt/<%=tch._id%>/<%=ele._id%>?_method=DELETE" method="Post">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                    <a href="/teaching/update/<%=tch._id%>/<%=ele._id%>" class="btn btn-dark">Update</a>
+                </div>
+            </div>
+            <%}%>
+            <%for(let ele of completed){%>
+                <div class="teaching-info">
+                    <h2>status: <%=ele.status%></h2>
+                    <h2>semester: <%=ele.semester%></h2>
+                    <h2>course Code: <%=ele.courseCode%></h2>
+                    <h2>course Name: <%=ele.courseName%></h2>
+                    <h2>level: <%=ele.level%></h2>
+                    <h2>course Link: <%=ele.courseLink%></h2>
+                    <div class="button-handler">
+                        <form action="/teaching/deleteIt/<%=tch._id%>/<%=ele._id%>?_method=DELETE" method="Post">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                        <a href="/teaching/update/<%=tch._id%>/<%=ele._id%>" class="btn btn-dark">Update</a>
+                    </div>
+                </div>
+                <%}%>
+               <br>
+    </div>
+    <br>
+    <br>
+    <%}%>
+</div>
+
+
+
+
+
+
+
+<%- include('../partials/footer'); -%>

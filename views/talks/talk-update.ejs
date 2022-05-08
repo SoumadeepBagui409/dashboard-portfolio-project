@@ -1,0 +1,36 @@
+<%- include('../partials/header'); -%>
+<%- include('../partials/navbar'); -%>
+
+
+
+<div class="talk-add-design">
+    <br>
+
+        <div class="talk-add-data">
+            <form action="/talk/update/data/<%=id%>/<%=idx%>" method="POST">
+                <h1>Update data for the Invited talks</h1>
+                <hr>
+                <h3> <label for="title">Update Title</label></h3> 
+                <br>
+                <textarea name="title" id="title" cols="40" rows="10" required><%=detail.title%></textarea>
+                <br>
+                <h3><label for="place">update Place</label></h3>
+                <br>
+                <input type="text" name="place" id="place" placeholder="enter the destination" value="<%=detail.place%>">
+                <br>
+                <h3><label for="date">update Date</label></h3>
+                <br>
+                <input type="date" name="date" id="date" placeholder="enter the destination" >
+                <br>
+                <br>
+                <button type="submit" class="btn-lg btn-dark">Update</button>
+            </form>
+        </div>
+        <br>
+        <br>
+</div>
+
+
+
+
+<%- include('../partials/footer'); -%>

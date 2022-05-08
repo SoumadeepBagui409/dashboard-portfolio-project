@@ -1,0 +1,48 @@
+<%- include('../partials/header'); -%>
+<%- include('../partials/navbar'); -%>
+
+<div class="researchLink-edit">
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="researchForm-edit">
+        <h2>research Link</h2>
+       
+        <hr>
+        <br>
+        <br>
+        <form action="/researchLink/update" method="POST">
+            <label for="publon">
+                publon: &nbsp;
+            </label>
+            <input type="text" name="publon" id="publon" value="<%=link[0].publon%>">
+            <br>
+            <br>
+            <label for="googleScholar">
+                googleScholar: &nbsp;
+            </label>
+            <input type="text" name="googleScholar" id="googleScholar" value="<%=link[0].googleScholar%>">
+            <br>
+            <br>    
+            <label for="DBPL">
+                DBPL: &nbsp;
+            </label>
+            <input type="text" name="DBPL" id="DBPL" value="<%=link[0].DBPL%>">
+            <br>
+            <br>
+            <label for="orchid">
+                orchid: &nbsp;
+            </label>
+            <input type="text" name="orchid" id="orchid" value="<%=link[0].orchid%>">
+            <br>
+            <br>
+            <button type="submit" class="btn btn-dark">save</button>
+        </form>
+    </div>
+
+</div>
+
+
+
+<%- include('../partials/footer'); -%>

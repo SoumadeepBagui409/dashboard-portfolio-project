@@ -1,0 +1,41 @@
+<%- include('../partials/header'); -%>
+<%- include('../partials/navbar'); -%>
+
+
+<div class="data-insert-res">
+    <br><br>
+    <div class="insert-Data-reseatch">
+        <form action="/research/dataInside" method="post">
+            <label for="year">Year</label>
+            <br>
+            <br>
+            <input type="text" name="year" id="year">
+            <br>
+            <br>
+            <label for="desc">Description</label>
+            <br>
+            <br>
+            <textarea name="desc" id="desc" cols="30" rows="10">
+
+            </textarea>
+            <br>
+            <br>
+            <label for="type"> Type: </label>
+            <select name="type" id="type">
+                <option value="ohter"> other</option>
+                <option value="journal">Journal</option>
+                <option value="Conference">Conference</option>
+                <option value="Book">Book</option>
+                <option value="BookChapter">Book Chapter</option>
+                <option value="patent">patent</option>
+            </select>
+            <br>
+            <br>
+            <button type="submit" class="btn btn-dark">Add</button>
+
+        </form>
+    </div>
+</div>
+
+
+<%- include('../partials/footer'); -%>

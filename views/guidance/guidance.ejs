@@ -1,0 +1,82 @@
+<%- include('../partials/header'); -%>
+<%- include('../partials/navbar'); -%>
+
+
+    <div class="guidance-back">
+
+        <div class="guidance-heading">
+            <h2>Guidance and teach</h2>
+        </div>
+        <br>
+        
+            <%for(let guide of guidance){%>
+                <div class="guidance-body">
+                        <a href="/guidance/add/<%=guide._id%>" class="btn btn-dark" style="text-decoration:none;">ADD</a>
+                    
+                   
+                    <br>
+                
+                <h2><%=guide.degree%></h2>
+               
+                <hr>
+                <br>
+                    <ul>
+                        <%for(let tvl of guide.info){%>
+                            
+                            <div class="guidance-info">
+                                <h4><li>name -> <%=tvl.name%></li></h4>
+                                <h4>
+                                    <li>title of the project -> <%=tvl.title%></li>
+                                </h4>
+                                <h4>
+                                   <li>time taken -> <%=tvl.time%></li>
+                                </h4>
+                                <h4>
+                                    <li>project -> <%=tvl.project%></li>
+                                </h4>
+                                <h4>
+                                    <li>Duration -> <%=tvl.duration%></li>
+                                </h4>
+                                <%if(guide.degree!="intern"){%>
+                                <h4>
+                                    <li>affiliation -> <%=tvl.affiliation%></li>
+                                </h4>
+                                <h4>
+                                    <li>
+                                        status -> <%=tvl.status%>
+                                    </li>
+                                </h4>
+                                <%}%>
+                                <br>
+                                <br>
+                                <br>
+                                <div class="guidance-button-display">
+                                    <form action="/guidance/delete/<%=guide._id%>/<%=tvl._id%>?_method=DELETE" method="POST">
+                                        
+                                        <button type="submit" class="btn-sm btn-danger"> 
+                                            delete
+                                        </button>
+                                    </form>
+                                    <a href="/guidance/update/<%=guide._id%>/<%=tvl._id%>" class="btn  btn-dark">Update</a>
+                                </div>
+                              
+                            </div>
+                            
+                            <br>
+                            <br>
+                            <%}%>
+                    </ul>
+                  
+                </div>
+                <%}%>
+                <br>
+                <br>
+    </div>
+
+
+
+
+
+
+
+<%- include('../partials/footer'); -%>

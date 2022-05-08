@@ -1,0 +1,44 @@
+<%- include('../partials/header'); -%>
+<%- include('../partials/navbar'); -%>
+
+
+<div class="talk-add-design">
+    <br>
+
+        <div class="talk-add-data">
+            <form action="/talk/add/dataNew" method="POST">
+                <h1>Add data for the Invited talks</h1>
+                <hr>
+                <h3><label for="year">Year</label></h3>
+                <input type="number" name="year" id="year" min="1970" placeholder="enter the year not added in the invited talk list" required> 
+                <br>
+                <br>
+                <h3> <label for="title">Add Title</label></h3> 
+                <br>
+                <textarea name="title" id="title" cols="40" rows="10" required></textarea>
+                <br>
+                <h3><label for="place">Place</label></h3>
+                <br>
+                <input type="text" name="place" id="place" placeholder="enter the destination">
+                <br>
+                <h3><label for="date">Date</label></h3>
+                <br>
+                <input type="date" name="date" id="date" placeholder="enter the destination">
+                <br>
+                <br>
+                <button type="submit" class="btn-lg btn-dark">Add</button>
+            </form>
+        </div>
+        <br>
+        <br>
+</div>
+
+
+
+
+
+
+
+
+
+<%- include('../partials/footer'); -%>

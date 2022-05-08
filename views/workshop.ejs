@@ -1,0 +1,58 @@
+<%- include('./partials/header'); -%>
+<%- include('./partials/navbar'); -%>
+
+<div class="workshop-background">
+    <div class="workshop-setup">
+        <div class="workshop-heading">
+            <h1>Workshop</h1>
+            <br>
+            <div>
+                <a class="workShop-add" href="/workshop/add">Add New Workshop</a>
+            </div>
+            
+        </div>
+       
+
+        <br>
+        <%for(let work of workshop){%>
+            <div class="workshop-info">
+              
+                <form action="/workshop/delete/<%=work._id%>?_method=DELETE" method="POST">
+                    <div class="control-workshop-complete">
+                        <button type=" submit" class="btn btn-danger">Delete The Workshop</button>
+                        <a class="workShop-add" href="/workshop/add/<%=work._id%>">include workshop</a>
+                        
+                   
+                    </div>
+                    <br>
+                    <h3><%=work.year%></h3>
+                </form>
+            
+            <hr>
+                <%let val = 0%>
+                <%for(let info of work.desc){%>
+                    <div class="workshop-detail">
+                        <p><%=val+1%> .)  <%=info%></p>
+                        <div style="display: flex; justify-content: space-between;">
+                            <form action="/workshop/delete/<%=work._id%>/<%=val%>?_method=DELETE" method="POST">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                            <a class="workShop-add" href="/workshop/<%=work._id%>/<%=val%>">Update</a>
+                           
+                        </div>
+                       
+                        <%val++%>
+                    </div>
+                       
+                    <br>
+                       
+                    <%}%>
+                </div>
+            <%}%>
+        <hr>
+    </div>
+</div>
+
+
+
+<%- include('./partials/footer'); -%>

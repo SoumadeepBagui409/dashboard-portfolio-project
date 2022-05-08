@@ -1,0 +1,48 @@
+<%- include('../partials/header'); -%>
+<%- include('../partials/navbar'); -%>
+
+
+
+
+<div class="teachingAdd-background">
+    
+   <br>
+   <br>
+    <div class="teaching-infoAdd">
+        
+        Update Course Data
+        <br>
+        <br>
+        <br>
+    <br>
+        <form action="/course/update/<%=id%>?_method=PATCH" method="post">
+            <label for="courseName">Course Name</label>
+            <br>
+            <input type="text" name="courseName" id="courseName" required value="<%=data.courseName%>">
+            <br>
+            <br>
+            <label for="courseCode">Course Code</label>
+            <br>
+            <input type="text" name="courseCode" id="courseCode" required placeholder="Code should be unique" value="<%=data.courseCode%>">
+            <br>
+            <br>
+            <label for="desc">Description</label>
+            <br>
+<textarea name="desc" id="desc" cols="30" rows="10">
+<%for(let info of data.desc){%><%=info%><%}%>
+</textarea> 
+            <br>
+            <br>
+            <button type="submit" class="btn btn-dark">Update the Course</button>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<%- include('../partials/footer'); -%>

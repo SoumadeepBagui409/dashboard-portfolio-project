@@ -1,0 +1,67 @@
+<%- include('../partials/header'); -%>
+<%- include('../partials/navbar'); -%>
+
+<div class="research-backgorund">
+    <div>
+        <br>
+        <br>
+        <h1>Research</h1>
+        <a href="/research/dataInsert" class="btn btn-dark">Add Data</a>
+    </div>
+    <br>
+    <br>
+    <div class="research-link">
+        <h3>Research Link</h3>
+    
+        <a href="/researchLink/edit" class="btn btn-success">EDIT</a>
+        <hr>
+        <br>
+        <h5>-> Publon:  <%=link[0].publon%></h5>
+        <br>
+        <h5>-> Google Scholar: <%=link[0].googleScholar%></h5>
+        <br>
+        <h5>-> DBPL: <%=link[0].DBPL%></h5>
+        <br>
+        <h5>-> orichid: <%=link[0].orchid%></h5>
+    </div>
+  
+        <br>
+        <br>
+    <%for(let rsh of research){%>
+    <div class="research-view">
+        <h2><%=rsh.year%></h2>
+        <div class="button-handler">
+            <form action="/research/delete/<%=rsh._id%>?_method=DELETE" method="post">
+                <button type="submit" class="btn btn-danger">delete</button>
+                <br>
+                <br>
+            </form>
+            <a href="/research/add/<%=rsh._id%>" class="btnn">add</a>
+        </div>
+        
+        <hr>
+        <%for(let tvl of rsh.info){%> 
+            <div class="research-data">
+                <h4>->: <%=tvl.desc%></h4>
+                <br>
+                <p><%=tvl.type%></p>
+                <div class="button-handler">
+                    <form action="/research/delete/<%=rsh._id%>/<%=tvl._id%>?_method=DELETE" method="POST">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                    <a href="/research/update/<%=rsh._id%>/<%=tvl._id%>" class="btn btn-dark">update</a>
+             
+                </div>
+            </div>
+            <br>
+            <%}%>
+    </div>
+    <br>
+    <%}%>
+</div>
+
+
+
+
+
+<%- include('../partials/footer'); -%>

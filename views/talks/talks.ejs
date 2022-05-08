@@ -1,0 +1,57 @@
+<%- include('../partials/header'); -%>
+<%- include('../partials/navbar'); -%>
+
+<div class="talks-body">
+    <br>
+    <h2>
+        TALKS
+     
+    </h2>
+    <br>
+    <a href="/talk/add" class="talk-add">Add New invited Talk</a>
+    <h1>   <hr> </h1>
+    <br>
+    <%for(let talk of talks){%>
+        <div class="talk-year-body">
+            <br>
+            <div class="talk-display">
+                <form action="/talk/delete/<%=talk._id%>" method="POST">
+                    <button type="submit" class="btn btn-danger">Delete the talk section</button>
+                </form>
+                <a href="/talk/add/<%=talk._id%>" class="talk-add">Add invited Talk</a>
+            </div>
+            <h2><%=talk.year%></h2>
+            <hr>
+            <%for(let detail of talk.info){%>
+                <div class="talk-year-info">
+                    <p>Invited talk on</p>
+                    <br>
+                    <%=detail.title%>
+                    <br>
+                    <%if(detail.place.length>0){%>
+                    <br>
+                    at <%=detail.place%> place
+                    <%}if(detail.date.length>0){%>
+                    <br>
+                    on <%=detail.date%> date
+                    <%}%>
+                    <br>
+                    <br>
+                        <div class="talk-button-display">
+                           <form action="/talk/delete/<%=talk._id%>/<%=detail._id%>?_method=DELETE" method="POST">
+                                <button type="submit" class="btn-sm btn-danger">Delete</button>
+                           </form>
+                           <a href="/talk/update/<%=talk._id%>/<%=detail._id%>" class="talk-add">Update</a>
+                        </div>
+                </div>
+                <br>
+            <%}%>
+        </div>
+        <br>
+    <%}%>
+</div>
+
+
+
+
+<%- include('../partials/footer'); -%>

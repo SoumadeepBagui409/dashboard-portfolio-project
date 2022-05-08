@@ -1,0 +1,108 @@
+.research-backgorund{
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: 1px 0px 1px black;
+    background: linear-gradient(to bottom right,rgba(191, 182, 127, 0.288),rgba(105, 171, 195, 0.315)),url("https://images.unsplash.com/photo-1651232881282-7bbbbb81e067?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyOXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    letter-spacing: 0.2rem;
+}
+
+.research-link{
+    width: 90vw;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    padding: 20px;
+    margin: auto;
+    background: linear-gradient(to bottom right,rgba(19, 67, 103, 0.573),rgba(15, 128, 119, 0.556));
+}
+
+.researchForm-edit{
+    background: linear-gradient(to bottom right,rgba(21, 119, 91, 0.582),rgba(51, 155, 194, 0.571));
+    width: 90vw;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.researchLink-edit{
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: 1px 0px 1px black;
+    background: linear-gradient(to bottom right,rgba(191, 182, 127, 0.288),rgba(105, 171, 195, 0.315)),url("https://images.unsplash.com/photo-1651232881282-7bbbbb81e067?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyOXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    letter-spacing: 0.2rem;
+    height: 100vh;
+}
+.research-view{
+    background: linear-gradient(to bottom right,rgba(21, 119, 91, 0.582),rgba(51, 155, 194, 0.571));
+    padding: 20px;
+    width: 90vw;
+    margin: 10px auto;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.research-data{
+    width: 80vw;
+    padding: 20px;
+    background: linear-gradient(to bottom right,rgba(21, 29, 119, 0.582),rgba(51, 194, 92, 0.571));
+    margin: 10px auto;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+}
+
+.research-add{
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: 1px 0px 1px black;
+    background: linear-gradient(to bottom right,rgba(191, 182, 127, 0.288),rgba(105, 171, 195, 0.315)),url("https://images.unsplash.com/photo-1651232881282-7bbbbb81e067?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyOXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    letter-spacing: 0.2rem;
+    height: 100vh;
+}
+
+.research-add-data{
+    background: linear-gradient(to bottom right,rgba(21, 29, 119, 0.582),rgba(51, 194, 92, 0.571));
+    width: 70vw;
+    margin: auto;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.button-handler{
+    display:flex;
+    justify-content: space-around;
+}
+
+.data-insert-res{
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: 1px 0px 1px black;
+    background: linear-gradient(to bottom right,rgba(191, 182, 127, 0.288),rgba(105, 171, 195, 0.315)),url("https://images.unsplash.com/photo-1651232881282-7bbbbb81e067?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyOXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    letter-spacing: 0.2rem;
+    height: 100vh;
+}
+.insert-Data-reseatch{
+    padding: 20px;
+    background: linear-gradient(to bottom right,rgba(21, 29, 119, 0.582),rgba(51, 194, 92, 0.571));
+    width: 90vw;
+    margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.btnn{
+    background-color: black;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: 5px;
+    height: 35px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    border-radius: 10%;
+}
