@@ -17,9 +17,6 @@ const ResearchLink = require('./models/reserachLink');
 const Teach = require('./models/teaching.js');
 const Course = require('./models/course')
 const dateConvert = require('./dateConversion');
-const { Console } = require('console');
-const teaching = require('./models/teaching.js');
-const res = require('express/lib/response');
 app.set('view engine','ejs');
 app.set('views',viewsPath);
 
@@ -322,7 +319,6 @@ app.post("/guidance/add/:id",async(req,res)=>{
     try{
         const guide = await Guidance.findOne({_id:id});
         guide.info.unshift(req.body);
-        console.log(guide);
         await guide.save();
         res.redirect("/guidance");
     }catch(err){
@@ -650,9 +646,10 @@ app.get("/teaching/add/:id",async(req,res)=>{
 
 })
 app.post("/teaching/addData/:id",async(req,res)=>{
-    const {id} = req.body;
+    const {id} = req.params;
     try{
         const finder = await Teach.findOne({_id:id});
+        
         finder.info.unshift(req.body);
         await finder.save();
         res.redirect("/teaching");
@@ -734,7 +731,6 @@ app.post("/course/add/data",async(req,res)=>{
         res.render(Err.message);
     }
 })
-
 app.delete("/course/delete/:id",async(req,res)=>{
     try{    
         const {id} = req.params;
@@ -744,7 +740,6 @@ app.delete("/course/delete/:id",async(req,res)=>{
         res.send(err.message);
     }
 })
-
 app.get("/course/update/:id",async(req,res)=>{
     try{    
         const {id} = req.params;
