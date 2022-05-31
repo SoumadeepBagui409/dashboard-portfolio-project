@@ -839,8 +839,7 @@ app.post("/opening/add/data",auth,async(req,res)=>{
 
 
 
-app.get("/login",async(req,res)=>{
-    const user = await User.find({});
+app.get("/login",(req,res)=>{
         res.render("user/login"); 
 })
 app.post("/login",auth,async(req,res)=>{
