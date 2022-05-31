@@ -1,0 +1,63 @@
+<%- include('../partials/header'); -%>
+<%- include('../partials/navbar'); -%>
+
+<div class="opening-add-design">
+    <br>
+    <h1>Add opening Data</h1>
+    <br>
+    <br>
+    <div class="opening-data-design">
+        <br>
+        <br>    
+        <form action="/opening/add/data" method="post">
+            <label for="project">Project</label>
+            <br>
+            <input type="text" name="project" id="project">
+            <br>
+            <br>
+            <label for="level">Level</label>
+            <br>
+            <select name="level" id="level">
+                <option value="bachelor">bachelor</option>
+                <option value="master">master</option>
+                <option value="phd">phd</option>
+                <option value="intern">intern</option>
+            </select>
+            <br>
+            <br>
+            <label for="status">Status</label>
+            <br>
+            <select name="status" id="status">
+                <option value="open">Currently Open</option>
+                <option value="close">closed</option>
+            </select>
+            <br>
+            <br>
+            <label for="LastDate">Last Date to apply</label>
+            <br>
+            <input type="date" name="LastDate" id="LastDate">
+            <br>
+            <br>
+            <label for="desc">Descrption</label>
+            <br>
+            <br>
+            <textarea name="desc" id="desc" cols="30" rows="10"></textarea>
+            <br>
+            <br>
+            <label for="link">Add google link form</label>
+            <br>
+            <input type="text" name="link" id="link">
+            <br>
+            <br>
+            <button type="submit" class="btn btn-dark">Add</button>
+        </form>
+        <br>
+        <br>
+    </div>
+   <br>
+   <br><br>
+   
+</div>
+
+
+<%- include('../partials/footer'); -%>

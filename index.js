@@ -15,18 +15,33 @@ const Guidance = require('./models/guidance.js');
 const Research = require('./models/reserach');
 const ResearchLink = require('./models/reserachLink');
 const Teach = require('./models/teaching.js');
-const Course = require('./models/course')
+const Course = require('./models/course');
+const User = require('./models/user')
 const dateConvert = require('./dateConversion');
+const bcrypt = require('bcryptjs');
+const auth = require('./Auth');
+const logOut = require('./logoutShow');
+const tokenise = require('./tokenise.js');
+const { redirect } = require('express/lib/response');
+const { find } = require('./models/workshop.js');
+const cookieParser = require('cookie-parser'); 
+const res = require('express/lib/response');
 app.set('view engine','ejs');
 app.set('views',viewsPath);
 
 app.use(express.urlencoded({extended:true}));
-app.use(methodOverride('_method'));
+app.use(cookieParser());
 
+app.use(methodOverride('_method'));
 mongoose.connect(process.env.MONGODB_URL);
+
+
+
+
 app.get('/',async(req,res)=>{
     res.redirect("/workshop");
 })
+
 // workShop sections
 app.get('/workshop',async(req,res)=>{
     try{
@@ -46,7 +61,7 @@ app.get('/workshop/add',(req,res)=>{
 })
 
 // workshopp add post request for holistic view
-app.post('/workshop/add',async(req,res)=>{
+app.post('/workshop/add',auth,async(req,res)=>{
     const {year,descp} = req.body;
     try{
         console.log(year);
@@ -63,7 +78,7 @@ app.post('/workshop/add',async(req,res)=>{
         res.send(Err.message);
     }
 })
-app.delete('/workshop/delete/:id',async(req,res)=>{
+app.delete('/workshop/delete/:id',auth,async(req,res)=>{
     const {id} = req.params;
     try{ 
         await Workshop.findByIdAndDelete({_id:id});  
@@ -79,7 +94,7 @@ app.get("/workshop/add/:id",(req,res)=>{
     res.render("workshop-add-id",{id:id});
 })
 
-app.post("/workshop/add/:id",async(req,res)=>{
+app.post("/workshop/add/:id",auth,async(req,res)=>{
     const {id} = req.params;
     const {descp} = req.body;  
     try{
@@ -107,7 +122,7 @@ app.get("/workshop/:id/:idx",async(req,res)=>{
    
 })
 
-app.post("/workshop/add/:id/:idx",async(req,res)=>{
+app.post("/workshop/add/:id/:idx",auth,async(req,res)=>{
     const {id,idx} = req.params;
     const {descp} = req.body;
     console.log(req.body);
@@ -121,7 +136,7 @@ app.post("/workshop/add/:id/:idx",async(req,res)=>{
     }
 })
 
-app.delete("/workshop/delete/:id/:idx",async(req,res)=>{
+app.delete("/workshop/delete/:id/:idx",auth,async(req,res)=>{
     const {id,idx} = req.params;
     try{
         const workshop = await Workshop.findOne({_id:id});
@@ -165,7 +180,7 @@ app.get("/talk/add/:id",(req,res)=>{
     res.render("talks/talk-add",{id:id});
 })
 
-app.post("/talk/add/data/:id",async(req,res)=>{
+app.post("/talk/add/data/:id",auth,async(req,res)=>{
     const {id} = req.params;
     const {title,place,date} = req.body;
     let dateCurr  = date.split("-");
@@ -190,7 +205,7 @@ app.post("/talk/add/data/:id",async(req,res)=>{
 });
 
 
-app.post("/talk/delete/:id",async(req,res)=>{
+app.post("/talk/delete/:id",auth,async(req,res)=>{
     const {id} = req.params;
     await Talks.findByIdAndDelete({_id:id});
     res.redirect("/talks");
@@ -201,7 +216,7 @@ app.get("/talk/add",(req,res)=>{
     res.render("talks/talk-add-new");
 })
 
-app.post("/talk/add/dataNew",async(req,res)=>{
+app.post("/talk/add/dataNew",auth,async(req,res)=>{
         const {year,title,date,place} = req.body;
         try{
             const talk = await Talks.findOne({year:year});
@@ -221,7 +236,7 @@ app.post("/talk/add/dataNew",async(req,res)=>{
         }
         res.redirect("/talks");
 })
-app.delete("/talk/delete/:id/:idx",async(req,res)=>{
+app.delete("/talk/delete/:id/:idx",auth,async(req,res)=>{
     const {id,idx} = req.params;
     try{
         const talk = await Talks.findOne({_id:id});
@@ -248,7 +263,7 @@ app.get("/talk/update/:id/:idx",async(req,res)=>{
         res.send(err.message);
     }
 })
-app.post("/talk/update/data/:id/:idx",async(req,res)=>{
+app.post("/talk/update/data/:id/:idx",auth,async(req,res)=>{
     const {id,idx} = req.params;
     const {title,date,place} = req.body;
     try{
@@ -314,7 +329,7 @@ app.get("/guidance/add/:id",async(req,res)=>{
 })
 
 
-app.post("/guidance/add/:id",async(req,res)=>{
+app.post("/guidance/add/:id",auth,async(req,res)=>{
     const {id} = req.params;
     try{
         const guide = await Guidance.findOne({_id:id});
@@ -326,7 +341,7 @@ app.post("/guidance/add/:id",async(req,res)=>{
     }
 })
 
-app.get("/guidance/update/:id/:idx",async(req,res)=>{
+app.get("/guidance/update/:id/:idx",auth,async(req,res)=>{
     const {id,idx} = req.params;
     try{
         const guide = await Guidance.find({_id:id});
@@ -346,7 +361,7 @@ app.get("/guidance/update/:id/:idx",async(req,res)=>{
     
 })
 
-app.post("/guidance/update/:id/:idx",async(req,res)=>{
+app.post("/guidance/update/:id/:idx",auth,async(req,res)=>{
     const {id,idx} = req.params;
     const {name,title,time,project,duration,affiliation,status} = req.body;
     let finalTime = dateConvert(time);
@@ -373,7 +388,7 @@ app.post("/guidance/update/:id/:idx",async(req,res)=>{
     }
 })
 
-app.delete("/guidance/delete/:id/:idx",async(req,res)=>{
+app.delete("/guidance/delete/:id/:idx",auth,async(req,res)=>{
    const {id,idx} = req.params;
     try{
         const  guide = await Guidance.findOne({_id:id});
@@ -429,7 +444,7 @@ app.get("/researchLink/edit",async(req,res)=>{
 
 
 
-app.post("/researchLink/update",async(req,res)=>{
+app.post("/researchLink/update",auth,async(req,res)=>{
     console.log(req.body);
     const {publon, googleScholar, DBPL, orchid} = req.body;
     try{
@@ -445,14 +460,14 @@ app.post("/researchLink/update",async(req,res)=>{
     }
 })
 
-app.get("/research/add/:id",(req,res)=>{
+app.get("/research/add/:id",auth,(req,res)=>{
     const {id} = req.params;
     res.render("research/researchAdd.ejs",{id:id});
 })
 
 
 
-app.post("/research/add/:id",async(req,res)=>{
+app.post("/research/add/:id",auth,async(req,res)=>{
     try{
         const {id} = req.params;
         const {desc,type} = req.body;
@@ -465,7 +480,7 @@ app.post("/research/add/:id",async(req,res)=>{
     }
 
 })
-app.delete("/research/delete/:id",async(req,res)=>{
+app.delete("/research/delete/:id",auth,async(req,res)=>{
     try{
         const {id} = req.params;
         await Research.findByIdAndDelete({_id:id});
@@ -478,7 +493,7 @@ app.delete("/research/delete/:id",async(req,res)=>{
 app.get("/research/dataInsert",(req,res)=>{
     res.render("research/researchDatainsert");
 })
-app.post("/research/dataInside",async(req,res)=>{
+app.post("/research/dataInside",auth,async(req,res)=>{
     console.log(req.body);
     const {year,desc,type} = req.body;
     try{
@@ -517,7 +532,7 @@ app.get("/research/update/:id/:idx",async(req,res)=>{
     }
 })
 
-app.patch("/research/add/:id/:idx",async(req,res)=>{
+app.patch("/research/add/:id/:idx",auth,async(req,res)=>{
     try{
         const {id,idx} = req.params;
         const {desc,type} = req.body;
@@ -535,7 +550,7 @@ app.patch("/research/add/:id/:idx",async(req,res)=>{
     }
 })
 
-app.delete("/research/delete/:id/:idx",async(req,res)=>{
+app.delete("/research/delete/:id/:idx",auth,async(req,res)=>{
     const {id,idx} = req.params;
     try{
         const resh = await Research.find({_id:id});
@@ -592,7 +607,7 @@ app.get("/teaching/add/data",async(req,res)=>{
         
 })
 
-app.post("/teaching/add/data",async(req,res)=>{
+app.post("/teaching/add/data",auth,async(req,res)=>{
     try{
         const {year,status,semester,level,courseCode,courseName,courseLink} = req.body;
         const tech = await Teach.find({year:year});
@@ -621,7 +636,7 @@ app.post("/teaching/add/data",async(req,res)=>{
     }
 })
 
-app.delete("/teaching/delete/:id",async(req,res)=>{
+app.delete("/teaching/delete/:id",auth,async(req,res)=>{
     const {id} = req.params;
     try{
         await Teach.findByIdAndDelete({_id:id});
@@ -645,7 +660,7 @@ app.get("/teaching/add/:id",async(req,res)=>{
     }
 
 })
-app.post("/teaching/addData/:id",async(req,res)=>{
+app.post("/teaching/addData/:id",auth,async(req,res)=>{
     const {id} = req.params;
     try{
         const finder = await Teach.findOne({_id:id});
@@ -658,7 +673,7 @@ app.post("/teaching/addData/:id",async(req,res)=>{
     }
 })
 
-app.delete("/teaching/deleteIt/:id/:idx",async(req,res)=>{
+app.delete("/teaching/deleteIt/:id/:idx",auth,async(req,res)=>{
     try{
         const {id,idx} = req.params;
         const  teach = await Teach.findOne({_id:id});
@@ -690,7 +705,7 @@ app.get("/teaching/update/:id/:idx",async(req,res)=>{
     }
 })
 
-app.patch("/teaching/update/:id/:idx",async(req,res)=>{
+app.patch("/teaching/update/:id/:idx",auth,async(req,res)=>{
     try{
         const {id,idx} = req.params;
         const teach = await Teach.findOne({_id:id});
@@ -717,7 +732,7 @@ app.get("/course/add",(req,res)=>{
         res.render("course/course");
 
 })
-app.post("/course/add/data",async(req,res)=>{
+app.post("/course/add/data",auth,async(req,res)=>{
     try{
         const {courseName,courseCode,desc} = req.body;
         const descrip = desc.split("\r");
@@ -731,7 +746,7 @@ app.post("/course/add/data",async(req,res)=>{
         res.render(Err.message);
     }
 })
-app.delete("/course/delete/:id",async(req,res)=>{
+app.delete("/course/delete/:id",auth,async(req,res)=>{
     try{    
         const {id} = req.params;
         await Course.findByIdAndDelete({_id:id});
@@ -750,7 +765,7 @@ app.get("/course/update/:id",async(req,res)=>{
     }
 })
 
-app.patch("/course/update/:id",async(req,res)=>{
+app.patch("/course/update/:id",auth,async(req,res)=>{
     try{
         const {id} = req.params;
         const course = await Course.findOne({_id:id});
@@ -761,6 +776,100 @@ app.patch("/course/update/:id",async(req,res)=>{
         course.desc = descrip;
         await course.save();
         res.redirect("/teaching");
+    }catch(err){
+        res.send(err.message);
+    }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+app.get("/opening",(req,res)=>{
+    res.render("opening/opening");
+})
+
+app.get("/opening/addData",(req,res)=>{
+    res.render("opening/openingAdd");
+})
+
+
+app.post("/opening/add/data",auth,async(req,res)=>{
+    const {project,level,status,LastDate,desc,link} = req.body;
+    const date = dateConvert(LastDate);
+    const descrip = desc.split("\r");
+    try{    
+        console.log(project,level,status,date,descrip,link);
+    }catch(err){
+        console.log(err.message);
+    }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+app.get("/login",async(req,res)=>{
+    const user = await User.find({});
+        res.render("user/login"); 
+})
+app.post("/login",auth,async(req,res)=>{
+    try{
+        
+        const {UserName,password} = req.body;
+        const user = await User.findByCred(UserName,password);
+       
+         const token = await tokenise(user);
+         res.cookie("jwt",token,{
+             expires:new Date(Date.now()+604800000),
+             httpOnly:true
+         })
+        res.redirect('/');
+    }catch(err){
+        res.send(err.message);
+    }
+})
+
+app.get('/logout',auth,async(req,res)=>{
+    try{
+        const user = req.user;
+        const token = req.token;
+        user.tokens = user.tokens.filter((ele)=>{
+            return ele.token!=token;
+        })
+        res.clearCookie("jwt");
+        await user.save();
+        res.redirect('/login');
     }catch(err){
         res.send(err.message);
     }
