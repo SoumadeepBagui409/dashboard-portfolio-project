@@ -864,7 +864,7 @@ app.get('/logout',auth,async(req,res)=>{
         user.tokens = user.tokens.filter((ele)=>{
             return ele.token!=token;
         })
-        res.clearCookie("jwt");
+        res.clearCookie('jwt');
         await user.save();
         res.redirect('/login');
     }catch(err){
