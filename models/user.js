@@ -21,7 +21,6 @@ const UserSchema = new mongoose.Schema({
 
 UserSchema.statics.findByCred = async (UserName,password)=>{
            const user = await User.findOne({UserName:UserName});
-         
        if(user.length==0){
            throw new error("not authenticated");
        }

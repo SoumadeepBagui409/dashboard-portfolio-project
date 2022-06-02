@@ -10,7 +10,6 @@ const auth = async (req,res,next)=>{
         }
         req.token = token;
         req.user = user;
-        res.isAuth = true;
         next();
     }catch(err){
         res.redirect('/login');

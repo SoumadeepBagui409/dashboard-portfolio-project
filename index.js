@@ -26,6 +26,7 @@ const { redirect } = require('express/lib/response');
 const { find } = require('./models/workshop.js');
 const cookieParser = require('cookie-parser'); 
 const res = require('express/lib/response');
+const { use } = require('express/lib/application');
 app.set('view engine','ejs');
 app.set('views',viewsPath);
 
@@ -34,8 +35,6 @@ app.use(cookieParser());
 
 app.use(methodOverride('_method'));
 mongoose.connect(process.env.MONGODB_URL);
-
-
 
 
 app.get('/',async(req,res)=>{
@@ -839,15 +838,14 @@ app.post("/opening/add/data",auth,async(req,res)=>{
 
 
 
-app.get("/login",(req,res)=>{
+app.get("/login",(kreq,res)=>{
         res.render("user/login"); 
 })
-app.post("/login",auth,async(req,res)=>{
+app.post("/login",async(req,res)=>{
     try{
-        
         const {UserName,password} = req.body;
+        console.log(UserName,password)
         const user = await User.findByCred(UserName,password);
-       
          const token = await tokenise(user);
          res.cookie("jwt",token,{
              expires:new Date(Date.now()+604800000),
